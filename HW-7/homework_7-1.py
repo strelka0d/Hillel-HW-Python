@@ -14,16 +14,16 @@ class IP_adresses(object):
     def __init__(self, lst_ip):
         self._lst_ip = lst_ip
 
-    def getip(self):
+    def get_ip(self):
         return self._lst_ip
 
-    def deployip(self):
+    def deploy_ip(self):
         res = []
         for ip in self._lst_ip:
             res.append('.'.join(ip.split('.')[::-1]))
         return res
 
-    def threelastoktet(self):
+    def three_last_oktet(self):
         res = []
         for ip in self._lst_ip:
             res.append('.'.join(ip.split('.')[1:]))
@@ -38,7 +38,7 @@ class IP_adresses(object):
 
 ip = IP_adresses(['10.11.12.13', '10.6.4.7'])
 
-print(ip.getip())
-print(ip.deployip())
-print(ip.threelastoktet())
+print(ip.get_ip())
+print(ip.deploy_ip())
+print(ip.three_last_oktet())
 print(ip.last_oktet())

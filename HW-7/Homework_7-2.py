@@ -51,8 +51,9 @@ class Jsonfile(object):
 
 file1 = 'test.json'
 file2 = 'test2.json'
-json_file = Jsonfile(file1, file2)
-json_file.read()
+
+
+
 data = {"user2": []}
 data["user2"].append({"firstName": "Adam",
   "lastName": "Black",
@@ -65,8 +66,15 @@ data["user2"].append({"firstName": "Adam",
   }
 })
 
-json_file.write(data)
-json_file.merge()
-print(f"The absolute path of {file1} is {json_file.abs_path(file1)}")
-print(f"The relative path of {file1} is {json_file.relative_path(file1)}")
+try:
+    json_file = Jsonfile(file1, file2)
+    json_file.read()
+    json_file.write(data)
+    json_file.merge()
+    print(f"The absolute path of {file1} is {json_file.abs_path(file1)}")
+    print(f"The relative path of {file1} is {json_file.relative_path(file1)}")
+except FileNotFoundError:
+    print(f'Cannot find file {file1}  to work with')
+
+
 
