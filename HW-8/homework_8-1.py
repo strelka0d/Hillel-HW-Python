@@ -4,7 +4,6 @@
 
 import os
 
-
 class Folder(object):
 
     def __init__(self, path, exc_type, suppress_ex):
