@@ -3,15 +3,32 @@
 # Так же ваш объект должен принимать исключение которое он будет подавлять.
 # Если флаг об исключении отсутствует, исключение должно быть поднято.
 
-import contextlib
+from contextlib import contextmanager
 import os
 
-@contextlib.contextmanager
-def Folder(path):
+
+@contextmanager
+def change_folder(path, exc_type, suppress_ex):
     saved_cd = os.getcwd()
+    print(f'I\'m in directory{saved_cd}')
     try:
         os.chdir(path)
-    except Exception as e:
-        print(f'error:{e}')
+    except exc_type:
+        if suppress_ex is True:
+            print(f'Error {exc_type.__name__} is suppresed')
+        else:
+            raise exc_type
+    try:
+        yield {}
+    except RuntimeError as e:
+        print(f'There\'s an error:{e}')
     finally:
-        os.chdir(saved_cd)
+        print(f'Now I\'m in directory {os.getcwd()}')
+
+
+path = "./New_folder"  # folder exist
+# path = "./Lessons"  # folder doesn't exist
+
+
+with change_folder(path,  FileNotFoundError, True) as cf:
+    pass
