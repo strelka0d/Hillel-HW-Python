@@ -28,4 +28,4 @@ threads = [Thread(target=main, args=((link for link in links), ))]
 
 for t in threads:
     t.start()
-    t.join
+    t.join()
